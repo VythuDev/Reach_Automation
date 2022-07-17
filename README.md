@@ -1,5 +1,5 @@
 # Reach_Automation
-Reach_Automation_Code (Maven Project): This repository is to build on Java with Maven.
+Reach_Automation_Code (Maven Project): This project is build on Java with Maven.
 
 1. Language used : Java
 2. Tool used : Selenium

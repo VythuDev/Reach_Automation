@@ -1,11 +1,11 @@
 # Reach_Automation
-Reach_Automation_Code
+Reach_Automation_Code (Maven Project)
 
-Language used : Java
-Tool used : Selenium
-Browser used : Chrome
-Chrome version: 103.0.5060.114 (Chrome webdriver 103 is used for automation)
-Tool : Eclipse IDE
+1. Language used : Java
+2. Tool used : Selenium
+3. Browser used : Chrome
+4. Chrome version: 103.0.5060.114 (Chrome webdriver 103 is used for automation)
+5. Tool : Eclipse IDE
 
 This code contain:
 1. Driver class 

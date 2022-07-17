@@ -23,12 +23,12 @@ public class Support_Functions {
 	Map<String, Object> contact_Info;
 	WebDriver driver;
 	FileWriter filewriter;
-	String output_file_path = System.getProperty("user.dir") +"\\OutputJson"; // directory from where the program was launched
-	
+	String output_file_path = System.getProperty("user.dir") + "\\OutputJson"; // directory from where the program was launched
+	String screenshot_Path = System.getProperty("user.dir") + "\\Screenshots\\";
+
 	JSONArray json_arr = new JSONArray();
-	
-	public Support_Functions(WebDriver driver)
-	{
+
+	public Support_Functions(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -37,7 +37,6 @@ public class Support_Functions {
 		if (file.exists()) {
 			file.delete();
 		}
-
 	}
 
 	public void FirstCompany() {
@@ -54,8 +53,7 @@ public class Support_Functions {
 				URL imageURL = new URL(logoSRC);
 				BufferedImage saveimage = ImageIO.read(imageURL);
 				CompanyName = CompanyName.replaceAll("/", ""); // CompanyName=CompanyName.replaceAll("[^a-zA-Z0-9]+","");
-				ImageIO.write(saveimage, "png",
-						new File("C:\\Users\\Devesh\\eclipse-workspace\\Reach\\Screenshots\\" + CompanyName + ".png"));
+				ImageIO.write(saveimage, "png", new File(screenshot_Path + CompanyName + ".png"));
 				companyObj.put("Logo_File_Name", CompanyName + ".png");
 			}
 		} catch (Exception e) {
@@ -67,7 +65,7 @@ public class Support_Functions {
 		driver.navigate().back();
 	}
 
-	public void LastCompany( int No_of_Companies) {
+	public void LastCompany(int No_of_Companies) {
 		companyObj = new LinkedHashMap<>();
 		String Path = "//div[@class='col-md-6 ingredients ieright']/ul/li[" + No_of_Companies + "]/a";
 		driver.findElement(By.xpath(Path)).click();
@@ -82,8 +80,7 @@ public class Support_Functions {
 				URL imageURL = new URL(logoSRC);
 				BufferedImage saveimage = ImageIO.read(imageURL);
 
-				ImageIO.write(saveimage, "png",
-						new File("C:\\Users\\Devesh\\eclipse-workspace\\Reach\\Screenshots\\" + CompanyName + ".png"));
+				ImageIO.write(saveimage, "png", new File(screenshot_Path + CompanyName + ".png"));
 				companyObj.put("Logo_File_Name", CompanyName + ".png");
 			}
 		} catch (Exception e) {
@@ -95,7 +92,7 @@ public class Support_Functions {
 		driver.navigate().back();
 	}
 
-	public void ThirdCompany( int No_of_links) {
+	public void ThirdCompany(int No_of_links) {
 		companyObj = new LinkedHashMap<>();
 		if (No_of_links == 4 || No_of_links == 3) {
 			driver.findElement(By.xpath("//div[@class='col-md-6 ingredients ieright']/ul/li[01]/a")).click();
@@ -113,8 +110,7 @@ public class Support_Functions {
 				URL imageURL = new URL(logoSRC);
 				BufferedImage saveimage = ImageIO.read(imageURL);
 
-				ImageIO.write(saveimage, "png",
-						new File("C:\\Users\\Devesh\\eclipse-workspace\\Reach\\Screenshots\\" + CompanyName + ".png"));
+				ImageIO.write(saveimage, "png", new File(screenshot_Path + CompanyName + ".png"));
 				companyObj.put("Logo_File_Name", CompanyName + ".png");
 			}
 		} catch (Exception e) {
@@ -138,7 +134,7 @@ public class Support_Functions {
 		capture_Contact_details_from_Div(0, "col-md-4"); // right div element check
 
 		companyObj.put("Contact_Details", contact_Info);
-		
+
 	}
 
 	// Generic function
@@ -175,8 +171,6 @@ public class Support_Functions {
 			}
 		}
 	}
-
-
 
 	@SuppressWarnings("unchecked")
 	public void add_Company_Object_to_JsonArray() {

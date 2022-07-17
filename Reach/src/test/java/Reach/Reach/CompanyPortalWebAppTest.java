@@ -2,6 +2,7 @@ package Reach.Reach;
 
 import java.io.IOException;
 import java.util.List;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -29,11 +30,11 @@ public class CompanyPortalWebAppTest {
 				.findElements(By.xpath("//ul[@class='browse']/li//descendant::a"));
 
 		// Open each page and get required details
-		for (int i = 0; i < No_of_Pages_With_Data.size(); i++) {
+		for (int i = 0 ;i< No_of_Pages_With_Data.size(); i++) {
 
 			try {
-
 				No_of_Pages_With_Data.get(i).click();
+
 			} catch (org.openqa.selenium.StaleElementReferenceException ex) {
 				No_of_Pages_With_Data = driver.findElements(By.xpath("//ul[@class='browse']/li//descendant::a"));
 				No_of_Pages_With_Data.get(i).click();
@@ -47,12 +48,8 @@ public class CompanyPortalWebAppTest {
 
 			if (No_of_links == 1) {
 				SF.FirstCompany();
-			} else if (No_of_links == 2) {
+			} else if (No_of_links == 2 || No_of_links == 3) {
 				SF.FirstCompany();
-				SF.LastCompany(No_of_links_ieright.size());
-			} else if (No_of_links == 3) {
-				SF.FirstCompany();
-				SF.ThirdCompany(No_of_links);
 				SF.LastCompany(No_of_links_ieright.size());
 			} else if (No_of_links == 4) {
 				SF.FirstCompany();
@@ -65,9 +62,19 @@ public class CompanyPortalWebAppTest {
 
 		}
 		SF.JsonfileCreation();
+
 	}
 
-	/*
-	 * @After public void terminateBrowser(){ driver.close(); }
-	 */
+	@After
+	public void terminateBrowser() {
+		
+		try {
+			Thread.sleep(5000);
+			// driver.close();
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
 }
